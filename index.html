@@ -76,9 +76,18 @@
   <h2 class="section-title">Available In-Stock Deals</h2>
   <section id="productsGrid" class="products-grid"></section>
 
-  <!-- 5. Sticky Bottom Cart Drawer -->
+  <!-- 5. Floating Open-Cart Button & Collapsible Bottom Cart Drawer -->
+  <button id="cartToggleBtn" class="cart-toggle-btn" onclick="openCartDrawer()">
+    🛒 View Cart (<span id="floatingCartCount">0</span>) • <span id="floatingCartTotal">₦0</span>
+  </button>
+
   <div id="cartDrawer" class="cart-drawer">
     <div class="cart-container">
+      <div class="cart-drawer-header">
+        <span class="cart-drawer-title">🛒 Your Order Summary</span>
+        <button class="btn-hide-cart" onclick="closeCartDrawer()">Hide Cart ✕</button>
+      </div>
+
       <div id="cartItemsList" class="cart-items-list"></div>
 
       <div class="delivery-inputs">

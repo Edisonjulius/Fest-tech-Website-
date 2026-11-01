@@ -82,6 +82,7 @@ let savedProducts = JSON.parse(localStorage.getItem("apex_products"));
 let products = savedProducts ? savedProducts : defaultProducts;
 
 let cart = JSON.parse(localStorage.getItem("apex_cart")) || [];
+let isCartOpen = false; // Tracks whether the user opened the cart drawer
 
 window.onload = function() {
   const savedName = localStorage.getItem("apex_customer_name");
@@ -91,6 +92,16 @@ window.onload = function() {
   renderProducts();
   updateCartUI();
 };
+
+function openCartDrawer() {
+  isCartOpen = true;
+  updateCartUI();
+}
+
+function closeCartDrawer() {
+  isCartOpen = false;
+  updateCartUI();
+}
 
 function renderProducts() {
   const grid = document.getElementById("productsGrid");
@@ -258,6 +269,7 @@ function removeItem(index) {
 
 function clearCart() {
   cart = [];
+  isCartOpen = false;
   localStorage.setItem("apex_cart", JSON.stringify(cart));
   updateCartUI();
 }
@@ -269,16 +281,19 @@ function saveCustomerDetails() {
 
 function updateCartUI() {
   const cartDrawer = document.getElementById("cartDrawer");
+  const cartToggleBtn = document.getElementById("cartToggleBtn");
   const cartItemsList = document.getElementById("cartItemsList");
   const cartCount = document.getElementById("cartCount");
   const cartTotal = document.getElementById("cartTotal");
+  const floatingCartCount = document.getElementById("floatingCartCount");
+  const floatingCartTotal = document.getElementById("floatingCartTotal");
 
   if (cart.length === 0 || isAdminUnlocked) {
     cartDrawer.style.display = "none";
+    cartToggleBtn.style.display = "none";
+    isCartOpen = false;
     return;
   }
-
-  cartDrawer.style.display = "flex";
 
   let totalUnits = 0;
   let totalAmount = 0;
@@ -305,6 +320,17 @@ function updateCartUI() {
   cartItemsList.innerHTML = itemsHTML;
   cartCount.innerText = totalUnits + (totalUnits === 1 ? " item in cart" : " items in cart");
   cartTotal.innerText = "₦" + totalAmount.toLocaleString();
+
+  floatingCartCount.innerText = totalUnits;
+  floatingCartTotal.innerText = "₦" + totalAmount.toLocaleString();
+
+  if (isCartOpen) {
+    cartDrawer.style.display = "flex";
+    cartToggleBtn.style.display = "none";
+  } else {
+    cartDrawer.style.display = "none";
+    cartToggleBtn.style.display = "inline-flex";
+  }
 }
 
 function checkoutOnWhatsApp() {
