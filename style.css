@@ -14,17 +14,24 @@
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-body {
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevents any horizontal scrolling */
   background-color: var(--light);
   color: var(--dark);
   line-height: 1.6;
+}
+
+body {
   padding-bottom: 290px;
 }
 
 /* BUTTON CONTAINER */
 .whatsapp-container {
   text-align: center;
-  padding: 20px;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 /* MAIN BUTTON */
@@ -34,8 +41,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-width: 205px;
-  padding: 11px 20px;
+  padding: 10px 18px;
   background: #eeeeeb;
   color: #454545;
   border: 1px solid #c9c9c5;
@@ -43,6 +49,7 @@ body {
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
   transition:
@@ -128,29 +135,6 @@ body {
   }
 }
 
-/* SMALL WHATSAPP ICON */
-.whatsapp-icon {
-  width: 15px;
-  height: 15px;
-  fill: currentColor;
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  .whatsapp-btn {
-    min-width: 190px;
-    font-size: 12px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* --- ANIMATIONS --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -171,16 +155,23 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5%;
+  gap: 0.5rem;
+  padding: 0.85rem 5%;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 15px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
 }
 
-.logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; color: rgb(88, 88, 233); }
+.logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: rgb(88, 88, 233);
+}
 .logo span { color: rgb(198, 84, 84); }
 
 .btn-wa {
@@ -208,7 +199,7 @@ body {
 
 /* 2. Hero & About Business Section */
 .hero-about {
-  padding: 4rem 5% 3rem;
+  padding: 3.5rem 5% 2.5rem;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
   border-bottom: 1px solid #e2e8f0;
@@ -227,7 +218,7 @@ body {
 }
 
 .hero-about h1 {
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(1.75rem, 4.5vw, 3.2rem);
   line-height: 1.15;
   margin-bottom: 1rem;
   max-width: 860px;
@@ -240,15 +231,15 @@ body {
 .hero-about p {
   color: var(--gray);
   max-width: 600px;
-  margin: 0 auto 2.5rem;
-  font-size: 1.05rem;
+  margin: 0 auto 2rem;
+  font-size: 1rem;
 }
 
 /* Trust Pillars Grid */
 .trust-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
   max-width: 1000px;
   margin: 0 auto;
   text-align: left;
@@ -256,7 +247,7 @@ body {
 
 .trust-card {
   background: white;
-  padding: 1.25rem;
+  padding: 1.15rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
   border: 1px solid #e2e8f0;
@@ -276,11 +267,12 @@ body {
 .admin-panel {
   display: none;
   max-width: 800px;
+  width: 92%;
   margin: 2rem auto;
   background: white;
   border: 2px solid var(--primary);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   animation: fadeIn 0.3s ease-out;
 }
@@ -289,6 +281,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #e2e8f0;
@@ -301,11 +295,12 @@ body {
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
   font-weight: 700;
+  display: inline-block;
 }
 
 .admin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: 0.85rem;
   margin-bottom: 1rem;
 }
@@ -326,16 +321,16 @@ body {
 /* 4. Product Grid & Cards */
 .section-title {
   text-align: center;
-  margin: 3rem 0 1.5rem;
-  font-size: 1.7rem;
+  margin: 2.5rem 1rem 1.25rem;
+  font-size: 1.5rem;
   letter-spacing: -0.5px;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.75rem;
-  padding: 0 5% 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.5rem;
+  padding: 0 5% 3.5rem;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -379,7 +374,7 @@ body {
 }
 
 .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-.card-specs { color: var(--gray); font-size: 0.85rem; margin-bottom: 1.2rem; }
+.card-specs { color: var(--gray); font-size: 0.85rem; margin-bottom: 1.2rem; word-break: break-word; }
 
 .card-price {
   font-size: 1.25rem;
@@ -468,13 +463,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   background: #1e293b;
   padding: 0.45rem 0.75rem;
   border-radius: 8px;
   font-size: 0.85rem;
 }
 
-.cart-item-controls { display: flex; align-items: center; gap: 0.45rem; }
+.cart-item-controls { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
 
 .qty-btn {
   background: #334155;
@@ -505,6 +501,7 @@ body {
 }
 
 .input-field {
+  width: 100%;
   background: #1e293b;
   border: 1px solid #334155;
   color: white;
@@ -533,7 +530,7 @@ body {
 
 .cart-count { font-size: 0.8rem; color: #94a3b8; display: block; }
 .cart-total { font-size: 1.25rem; font-weight: 800; color: #4ade80; }
-.cart-actions { display: flex; gap: 0.65rem; align-items: center; }
+.cart-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 
 .btn-clear {
   background: transparent;
@@ -567,5 +564,50 @@ footer {
   cursor: pointer;
   transition: var(--transition);
 }
-
 .btn-admin-toggle:hover { color: white; border-color: #64748b; }
+
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.75rem 4%;
+  }
+
+  .logo {
+    font-size: 0.95rem;
+  }
+
+  .whatsapp-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .hero-about {
+    padding: 2rem 4% 1.75rem;
+  }
+
+  .hero-about p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .products-grid {
+    padding: 0 4% 3rem;
+    gap: 1.25rem;
+  }
+
+  .cart-drawer {
+    padding: 0.85rem 4%;
+  }
+
+  .btn-wa {
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
