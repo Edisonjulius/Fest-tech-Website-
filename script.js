@@ -4,7 +4,7 @@ const ADMIN_PIN = "1234";
 let isAdminUnlocked = false;
 
 const defaultProducts = [
- [
+ 
   {
     "name": "Infinix Hot 70",
     "specs": "6.78'' | 6GB RAM | 256GB ROM | Android 16",
@@ -71,7 +71,7 @@ const defaultProducts = [
     "stock": 5,
     "img": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
   }
-]
+
 ];
 
 let savedProducts = JSON.parse(localStorage.getItem("apex_products"));
