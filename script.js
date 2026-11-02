@@ -1,5 +1,5 @@
 // <!-- 7. JavaScript Engine -->
-const VENDOR_PHONE = "2348149571308";
+const VENDOR_PHONE = "2348130976312";
 const ADMIN_PIN = "1234";
 let isAdminUnlocked = false;
 
